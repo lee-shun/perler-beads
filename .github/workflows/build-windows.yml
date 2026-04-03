@@ -3,7 +3,7 @@ name: Build Windows EXE
 on:
   push:
     branches: [ master ]
-  workflow_dispatch:   # 手动触发按钮
+  workflow_dispatch:
 
 jobs:
   build:
@@ -13,14 +13,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node.js 22 (Electron 要求)
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install   # ← 改成 npm install，兼容我们新加的依赖
 
       - name: Build Next.js + Electron
         run: npm run electron:build

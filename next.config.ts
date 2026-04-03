@@ -8,7 +8,7 @@ const withPWA = require("next-pwa")({
   buildExcludes: [/middleware-manifest\.json$/],
   runtimeCaching: [
     {
-      urlPattern: /^https?.*/,
+      urlPattern: /^https?.\*/,
       handler: "NetworkFirst",
       options: {
         cacheName: "offlineCache",
@@ -22,6 +22,7 @@ const withPWA = require("next-pwa")({
 });
 
 const nextConfig: NextConfig = {
+  output: "export",                    // ← 关键！静态导出
   /* config options here */
 };
 
